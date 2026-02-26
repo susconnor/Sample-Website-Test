@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const submitBtn = document.getElementById('submit-btn');
     
     // AWS Gateway URL ($default stage)
-    const API_URL = 'https://ltd21vywqc.execute-api.us-east-1.amazonaws.com/';
+    const API_URL = 'https://ltd21vywqc.execute-api.us-east-1.amazonaws.com';
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
