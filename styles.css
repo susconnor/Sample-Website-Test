@@ -1,0 +1,99 @@
+:root {
+    --bg-main: #151616;      /* Deep dark background */
+    --bg-card: #1c1c1e;      /* Lighter dark for header, container, and inputs */
+    --text: #ffffff;         /* Pure white text */
+    --accent: #2b6cb0;       /* Blue for focus glow */
+    --border: #3a3a3c;       /* Subtle border for inputs */
+}
+
+/* --- Global Reset --- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+    color: var(--text);
+    background-color: var(--bg-main);
+    line-height: 1.6;
+}
+
+/* --- Layout Structure --- */
+header, .container { 
+    background-color: var(--bg-card); 
+}
+
+header {
+    padding: 20px 0;
+    text-align: center;
+}
+
+.container {
+    width: 700px;
+    margin: 15px auto; /* 15px gap from header */
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+/* --- Typography --- */
+.logo-text, h1 {
+    font-size: 2rem; /* Matched sizes */
+    font-weight: 700;
+    text-align: center;
+}
+
+p {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #a1a1a6; /* Slightly dimmed for better hierarchy */
+}
+
+/* --- Form Elements --- */
+.form-group { margin-bottom: 20px; }
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    font-size: 1rem;
+    transition: box-shadow 0.2s ease;
+}
+
+/* --- Interaction (Lighting up the blue) --- */
+input:focus, textarea:focus, button:focus {
+    border-color: var(--accent);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(43, 108, 176, 0.4); /* The glow effect */
+}
+
+/* --- Submit Button --- */
+button {
+    width: 100%;
+    padding: 15px;
+    background-color: var(--text); /* White button */
+    color: var(--bg-card);        /* Dark text */
+    border: 1px solid transparent;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+/* --- Footer & Misc --- */
+footer {
+    text-align: center;
+    padding: 30px 0;
+    color: #718096;
+    font-size: 0.8rem;
+}
+
+.hidden { display: none !important; }
