@@ -1,18 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('support-form');
-    const messageBox = document.getElementById('form-message');
     const submitBtn = document.getElementById('submit-btn');
-    
-    // AWS Gateway URL ($default stage)
     const API_URL = 'https://vr1ujwyvbc.execute-api.us-east-1.amazonaws.com';
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
+        // 1. Lock UI
+        const originalText = "Submit to AWS";
         submitBtn.textContent = 'Sending...';
         submitBtn.disabled = true;
 
-        // Map form values to DynamoDB attributes
         const payload = {
             name: document.getElementById('name').value,
             email: document.getElementById('email').value,
@@ -23,28 +21,29 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const response = await fetch(API_URL, {
                 method: 'POST',
-                mode: 'cors', // Triggers CORS preflight handshake
-                headers: { 
-                    'Content-Type': 'application/json' // Signals JSON payload to API
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
             });
 
-            if (!response.ok) throw new Error(`Status: ${response.status}`);
+            if (!response.ok) throw new Error();
 
-            // Update UI on success
-            messageBox.textContent = 'Ticket recorded in DynamoDB.';
-            messageBox.style.color = 'green';
+            // 2. Success State
             form.reset();
-            submitBtn.textContent = 'Success';
+            submitBtn.textContent = 'Success!';
+            
+            setTimeout(() => {
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+            }, 3000);
 
         } catch (err) {
-            // Logs CORS or Network failures
-            console.error('AWS Error:', err);
-            messageBox.textContent = 'Connection failed. See console.';
-            messageBox.style.color = 'red';
+            // 3. Error State
+            submitBtn.textContent = 'Error';
             submitBtn.disabled = false;
-            submitBtn.textContent = 'Retry';
+            
+            setTimeout(() => {
+                submitBtn.textContent = originalText;
+            }, 3000);
         }
     });
 });
